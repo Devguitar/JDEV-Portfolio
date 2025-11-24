@@ -1,43 +1,60 @@
 ---
-import { contactMethods } from '../data/portfolio';
+import { contactMethods } from "../data/portfolio";
 ---
 
-<section id="contact" class="py-20 bg-white text-black border-b-2 border-black">
-  <div class="max-w-screen-xl mx-auto px-6">
+<section id="contact" class="relative py-20 bg-white text-black border-b-2 border-black overflow-hidden">
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <div
+      class="w-full h-full"
+      style="background-image: 
+        linear-gradient(90deg, #000 1px, transparent 1px); 
+       background-size: 410px 100%;
+       background-position: -72px 0;"
+    >
+    </div>
+  </div>
+  <div class="max-w-screen-xl mx-auto px-6 relative z-10">
     <div class="mb-12">
-      <span class="inline-block text-xs font-black tracking-widest border-b-2 border-black pb-1 mb-4">
+      <span
+        class="inline-block text-xs font-black tracking-widest border-b-2 border-black pb-1 mb-4"
+      >
         GET IN TOUCH
       </span>
     </div>
 
     <div class="max-w-4xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-l-2 border-t-2 border-black">
-        {contactMethods.map(method => (
-          <a 
-            href={method.href}
-            target={method.href.startsWith('http') ? '_blank' : undefined}
-            class="group border-r-2 border-b-2 border-black bg-transparent hover:bg-black transition-colors p-8"
-          >
-            <div class="flex flex-col items-center text-center">
-              {method.icon && (
-                <div class="mb-4">
-                  <img 
-                    src={method.icon} 
-                    alt={method.title}
-                    class={`w-12 h-12 object-contain grayscale transition-all duration-300 ${
-                      method.title === 'GITHUB' || method.title === 'X (TWITTER)' 
-                        ? 'group-hover:invert group-hover:grayscale-0' 
-                        : 'group-hover:grayscale-0'
-                    }`}
-                  />
-                </div>
-              )}
-              <h4 class="text-sm font-black tracking-widest mb-2 text-black group-hover:text-white">
-                {method.title}
-              </h4>
-            </div>
-          </a>
-        ))}
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-0 border-l-2 border-t-2 border-black"
+      >
+        {
+          contactMethods.map((method) => (
+            <a
+              href={method.href}
+              target={method.href.startsWith("http") ? "_blank" : undefined}
+              class="group border-r-2 border-b-2 border-black bg-white hover:bg-black transition-colors p-8 relative"
+            >
+              <div class="flex flex-col items-center text-center">
+                {method.icon && (
+                  <div class="mb-4">
+                    <img
+                      src={method.icon}
+                      alt={method.title}
+                      class={`w-12 h-12 object-contain grayscale transition-all duration-300 ${
+                        method.title === "GITHUB" ||
+                        method.title === "X (TWITTER)"
+                          ? "group-hover:invert group-hover:grayscale-0"
+                          : "group-hover:grayscale-0"
+                      }`}
+                    />
+                  </div>
+                )}
+                <h4 class="text-sm font-black tracking-widest mb-2 text-black group-hover:text-white">
+                  {method.title}
+                </h4>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
