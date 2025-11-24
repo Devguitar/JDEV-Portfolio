@@ -1,0 +1,38 @@
+---
+const navLinks = [
+  { href: '#about', label: 'ABOUT' },
+  { href: '#project', label: 'PROJECTS' },
+  { href: '#skills', label: 'SKILLS' },
+  { href: '#contact', label: 'CONTACT' },
+];
+---
+
+<nav class="sticky top-0 z-50 bg-white border-b-2 border-black">
+  <div class="max-w-screen-xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tighter text-black">
+        J DEV
+      </a>
+      
+      <ul class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href}
+              class="text-sm font-bold tracking-wider text-black border-b-2 border-transparent hover:border-black pb-0.5 transition-colors"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a 
+        href="https://drive.google.com/" 
+        class="px-5 py-2.5 bg-black text-white text-xs font-bold tracking-wider border-2 border-black hover:bg-white hover:text-black transition-colors"
+      >
+        DOWNLOAD CV
+      </a>
+    </div>
+  </div>
+</nav>

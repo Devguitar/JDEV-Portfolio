@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml
+
+// ==========================================
+// Instructions to run:
+// ==========================================
+// 1. Create a new directory and copy files
+// 2. Run: npm install
+// 3. Run: npm run dev
+// 4. Open: http://localhost:4321
+// 5. Add your images to src/images/
+// 6. Add your CV PDF to public/my-cv.pdf
+// 7. Create a favicon.svg in public/

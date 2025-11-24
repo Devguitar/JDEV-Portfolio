@@ -1,11 +1,207 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import Project from "../components/Project.astro";
+import About from "../components/About.astro";
+import Skills from "../components/Skills.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ryan Fitzgerald - Full Stack Developer Portfolio"
+    />
+    <title>John Dave - Developer Portfolio</title>
+  </head>
+
+  <body class="bg-white text-black">
+    <!-- Loading Screen -->
+    <div
+      id="loading-screen"
+      class="fixed inset-0 bg-white z-[100] flex items-center justify-center"
+    >
+      <div class="text-center">
+        <!-- Animated Logo -->
+        <div class="relative mb-8">
+          <div class="text-8xl font-black tracking-tighter animate-pulse">
+            J DEV
+          </div>
+          <div
+            id="spin-ring"
+            class="absolute inset-0 border-4 border-black animate-spin-slow"
+            style="animation-duration: 3000ms;"
+          >
+          </div>
+        </div>
+
+        <!-- Loading Bar -->
+        <div class="w-64 h-2 bg-gray-200 border-2 border-black overflow-hidden">
+          <div
+            id="loading-bar"
+            class="h-full bg-black transition-all duration-300"
+            style="width: 0%"
+          >
+          </div>
+        </div>
+
+        <!-- Loading Text -->
+        <p class="mt-6 text-xs font-black tracking-widest animate-pulse">
+          LOADING PORTFOLIO...
+        </p>
+      </div>
+    </div>
+
+    <Navigation />
+
+    <Hero />
+    <!-- About Section with Grid Background -->
+    <section class="relative">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <About />
+      </div>
+    </section>
+
+    <!-- Work Section with Grid Background -->
+    <section class="relative">
+      <!-- Grid Background -->
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <Project />
+      </div>
+    </section>
+
+    <!-- Skills Section with Grid Background -->
+    <section class="relative">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <Skills />
+      </div>
+    </section>
+
+    <!-- Contact Section with Grid Background -->
+    <section class="relative">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <Contact />
+      </div>
+    </section>
+
+    <Footer />
+
+    <script>
+      const loadingScreen = document.getElementById("loading-screen");
+      const loadingBar = document.getElementById("loading-bar");
+      const spinRing = document.getElementById("spin-ring");
+
+      const duration = 3000;
+      const startTime = performance.now();
+
+      if (spinRing) {
+        spinRing.style.animationDuration = duration + "ms";
+      }
+
+      function animate() {
+        const elapsed = performance.now() - startTime;
+        let progress = Math.min((elapsed / duration) * 100, 100);
+
+        if (loadingBar) {
+          loadingBar.style.width = progress + "%";
+        }
+
+        if (progress < 100) {
+          requestAnimationFrame(animate);
+        } else {
+          setTimeout(() => {
+            loadingScreen?.classList.add("opacity-0", "pointer-events-none");
+            setTimeout(() => loadingScreen?.remove(), 500);
+          }, 300);
+        }
+      }
+
+      requestAnimationFrame(animate);
+
+      window.addEventListener("load", () => {
+        if (loadingBar) loadingBar.style.width = "100%";
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const href = (e.currentTarget as HTMLAnchorElement).getAttribute(
+            "href",
+          );
+          const target = href ? document.querySelector(href) : null;
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+
+    <style>
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .animate-spin-slow {
+        animation: spin-slow 3s linear infinite;
+      }
+
+      #loading-screen {
+        transition: opacity 0.5s ease-out;
+      }
+    </style>
+  </body>
+</html>

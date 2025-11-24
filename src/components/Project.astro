@@ -1,0 +1,41 @@
+---
+import { projects } from '../data/portfolio';
+---
+
+<section id="project" class="py-20 border-b-2 border-black">
+  <div class="max-w-screen-xl mx-auto px-6">
+    <div class="mb-12">
+      <span class="inline-block text-xs font-black tracking-widest border-b-2 border-black pb-1 mb-4">
+        FEATURED PROJECTS
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l-2 border-t-2 border-black">
+      {projects.map(project => (
+        <a 
+          href={project.link} 
+          class="group block border-r-2 border-b-2 border-black bg-white hover:bg-black transition-colors"
+        >
+          <div class="aspect-video overflow-hidden border-b-2 border-black group-hover:border-white bg-gray-50 transition-colors">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-black tracking-widest text-black group-hover:text-white transition-colors">
+              {project.category}
+            </span>
+            <h3 class="text-2xl font-black tracking-tight mt-2 mb-1 text-black group-hover:text-white transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-sm text-gray-600 group-hover:text-gray-300 transition-colors">
+              {project.subtitle}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

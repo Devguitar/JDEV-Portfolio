@@ -1,0 +1,33 @@
+<!-- Scroll to Top Button -->
+<button 
+  id="scrollToTop"
+  class="fixed bottom-8 right-8 p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all opacity-0 pointer-events-none z-50"
+  aria-label="Scroll to top"
+>
+  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="square" stroke-width="3" d="M5 15l7-7 7 7" />
+  </svg>
+</button>
+
+<footer class="bg-white text-black py-8">
+  <div class="max-w-screen-xl mx-auto px-6 text-center">
+    <p class="text-xl font-black">
+      &copy; 2025 JOHN DAVE
+    </p>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('scrollToTop');
+
+  window.addEventListener('scroll', () => {
+    const show = window.scrollY > 300;
+    btn?.classList.toggle('opacity-0', !show);
+    btn?.classList.toggle('pointer-events-none', !show);
+    btn?.classList.toggle('opacity-100', show);
+  });
+
+  btn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

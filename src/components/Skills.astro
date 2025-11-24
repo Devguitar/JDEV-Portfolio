@@ -1,0 +1,36 @@
+---
+import { skills } from '../data/portfolio';
+---
+
+<section id="skills" class="py-20 border-b-2 border-black">
+  <div class="max-w-screen-xl mx-auto px-6">
+    <div class="mb-12">
+      <span class="inline-block text-xs font-black tracking-widest border-b-2 border-black pb-1 mb-4">
+        TECH STACK
+      </span>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 border-l-2 border-t-2 border-black">
+        {skills.map(skill => (
+          <div class="group border-r-2 border-b-2 border-black bg-white hover:bg-black transition-colors p-8 text-center">
+            {skill.icon && (
+              <div class="mb-4 flex justify-center">
+                <img 
+                  src={skill.icon} 
+                  alt={skill.name}
+                  class={`w-12 h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 ${
+                    skill.name === 'Git & GitHub' ? 'group-hover:invert' : ''
+                  }`}
+                />
+              </div>
+            )}
+            <h4 class="text-base font-black tracking-wide text-black group-hover:text-white">
+              {skill.name}
+            </h4>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
