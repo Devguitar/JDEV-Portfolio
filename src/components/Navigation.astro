@@ -1,9 +1,9 @@
 ---
 const navLinks = [
-  { href: '#about', label: 'ABOUT' },
-  { href: '#project', label: 'PROJECTS' },
-  { href: '#skills', label: 'SKILLS' },
-  { href: '#contact', label: 'CONTACT' },
+  { href: "#about", label: "ABOUT" },
+  { href: "#project", label: "PROJECTS" },
+  { href: "#skills", label: "SKILLS" },
+  { href: "#contact", label: "CONTACT" },
 ];
 ---
 
@@ -13,31 +13,34 @@ const navLinks = [
       <a href="/" class="text-2xl font-black tracking-tighter text-black">
         J DEV
       </a>
-      
+
       <!-- Desktop Navigation -->
       <ul class="hidden md:flex items-center gap-8">
-        {navLinks.map(link => (
-          <li>
-            <a 
-              href={link.href}
-              class="text-sm font-bold tracking-wider text-black border-b-2 border-transparent hover:border-black pb-0.5 transition-colors"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="nav-link text-sm font-bold tracking-wider text-black border-b-2 border-transparent hover:border-black pb-0.5 transition-colors"
+                data-section={link.href.substring(1)}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
 
       <!-- Desktop CV Button -->
-      <a 
-        href="https://drive.google.com/" 
+      <a
+        href="https://drive.google.com/"
         class="hidden md:block px-5 py-2.5 bg-black text-white text-xs font-bold tracking-wider border-2 border-black hover:bg-white hover:text-black transition-colors"
       >
         DOWNLOAD CV
       </a>
 
       <!-- Mobile Hamburger Button -->
-      <button 
+      <button
         id="mobile-menu-btn"
         class="md:hidden flex flex-col gap-1.5 w-7 h-7 items-center justify-center"
         aria-label="Toggle menu"
@@ -49,24 +52,24 @@ const navLinks = [
     </div>
 
     <!-- Mobile Menu -->
-    <div 
-      id="mobile-menu"
-      class="hidden md:hidden pt-4 pb-2"
-    >
+    <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
       <ul class="flex flex-col gap-4">
-        {navLinks.map(link => (
-          <li>
-            <a 
-              href={link.href}
-              class="block text-sm font-bold tracking-wider text-black hover:text-gray-600 transition-colors mobile-link"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="mobile-nav-link block text-sm font-bold tracking-wider text-black hover:text-gray-600 transition-colors mobile-link"
+                data-section={link.href.substring(1)}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
         <li class="pt-2">
-          <a 
-            href="https://drive.google.com/" 
+          <a
+            href="https://drive.google.com/"
             class="block w-full text-center px-5 py-2.5 bg-black text-white text-xs font-bold tracking-wider border-2 border-black hover:bg-white hover:text-black transition-colors"
           >
             DOWNLOAD CV
@@ -78,34 +81,200 @@ const navLinks = [
 </nav>
 
 <script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuLines = menuBtn?.querySelectorAll('span');
-  
-  menuBtn?.addEventListener('click', () => {
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuLines = menuBtn?.querySelectorAll("span");
+
+  menuBtn?.addEventListener("click", () => {
+    const isOpen = !mobileMenu?.classList.contains("hidden");
+
     if (isOpen) {
-      mobileMenu?.classList.add('hidden');
-      menuLines?.[0]?.classList.remove('rotate-45', 'translate-y-2');
-      menuLines?.[1]?.classList.remove('opacity-0');
-      menuLines?.[2]?.classList.remove('-rotate-45', '-translate-y-2');
+      mobileMenu?.classList.add("hidden");
+      menuLines?.[0]?.classList.remove("rotate-45", "translate-y-2");
+      menuLines?.[1]?.classList.remove("opacity-0");
+      menuLines?.[2]?.classList.remove("-rotate-45", "-translate-y-2");
     } else {
-      mobileMenu?.classList.remove('hidden');
-      menuLines?.[0]?.classList.add('rotate-45', 'translate-y-2');
-      menuLines?.[1]?.classList.add('opacity-0');
-      menuLines?.[2]?.classList.add('-rotate-45', '-translate-y-2');
+      mobileMenu?.classList.remove("hidden");
+      menuLines?.[0]?.classList.add("rotate-45", "translate-y-2");
+      menuLines?.[1]?.classList.add("opacity-0");
+      menuLines?.[2]?.classList.add("-rotate-45", "-translate-y-2");
     }
   });
 
   // Close menu when clicking on a link
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
-      menuLines?.[0]?.classList.remove('rotate-45', 'translate-y-2');
-      menuLines?.[1]?.classList.remove('opacity-0');
-      menuLines?.[2]?.classList.remove('-rotate-45', '-translate-y-2');
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuLines?.[0]?.classList.remove("rotate-45", "translate-y-2");
+      menuLines?.[1]?.classList.remove("opacity-0");
+      menuLines?.[2]?.classList.remove("-rotate-45", "-translate-y-2");
     });
+  });
+
+  // Wait for DOM to be fully loaded before setting up scroll tracking
+  function initScrollTracking() {
+    // Get all sections - including hero
+    const sections = document.querySelectorAll(
+      '[id="hero"], [id="about"], [id="project"], [id="skills"], [id="contact"]',
+    );
+    const navLinks = document.querySelectorAll(".nav-link");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+    const allNavLinks = document.querySelectorAll(
+      ".nav-link, .mobile-nav-link",
+    );
+
+    // If no sections found, exit gracefully
+    if (sections.length === 0) {
+      console.warn(
+        "No sections with IDs found. Make sure your sections have id attributes.",
+      );
+      return;
+    }
+
+    function updateActiveLink(sectionId: string) {
+      // Update desktop links
+      navLinks.forEach((link) => {
+        link.classList.remove("border-black");
+        link.classList.add("border-transparent");
+
+        if (link.getAttribute("data-section") === sectionId) {
+          link.classList.remove("border-transparent");
+          link.classList.add("border-black");
+        }
+      });
+
+      // Update mobile links
+      mobileNavLinks.forEach((link) => {
+        link.classList.remove("text-gray-600");
+
+        if (link.getAttribute("data-section") === sectionId) {
+          link.classList.add("text-gray-600");
+        }
+      });
+    }
+
+    function setActiveLink() {
+      // Get viewport height for better calculation
+      const viewportHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Check if we're at the bottom of the page
+      if (scrollPosition + viewportHeight >= documentHeight - 50) {
+        const lastSection = sections[sections.length - 1];
+        if (lastSection) {
+          updateActiveLink(lastSection.getAttribute("id") || "");
+          return;
+        }
+      }
+
+      // Check if we're at the top/hero section
+      if (scrollPosition < 100) {
+        // Clear all active states when in hero section
+        navLinks.forEach((link) => {
+          link.classList.remove("border-black");
+          link.classList.add("border-transparent");
+        });
+        mobileNavLinks.forEach((link) => {
+          link.classList.remove("text-gray-600");
+        });
+        return;
+      }
+
+      let currentSection = "";
+      const offset = viewportHeight * 0.3; // Section is active when 30% from top of viewport
+
+      sections.forEach((section) => {
+        const sectionElement = section as HTMLElement;
+        const sectionTop = sectionElement.offsetTop;
+        const sectionBottom = sectionTop + sectionElement.offsetHeight;
+
+        // Skip hero section in active link detection
+        if (section.getAttribute("id") === "hero") {
+          return;
+        }
+
+        // Check if the section is in the active viewport zone
+        if (
+          scrollPosition + offset >= sectionTop &&
+          scrollPosition + offset < sectionBottom
+        ) {
+          currentSection = section.getAttribute("id") || "";
+        }
+      });
+
+      if (currentSection) {
+        updateActiveLink(currentSection);
+      } else {
+        // Clear all active states if no section is active
+        navLinks.forEach((link) => {
+          link.classList.remove("border-black");
+          link.classList.add("border-transparent");
+        });
+        mobileNavLinks.forEach((link) => {
+          link.classList.remove("text-gray-600");
+        });
+      }
+    }
+
+    // Handle click events on nav links
+    allNavLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const section = link.getAttribute("data-section");
+        if (section) {
+          // Small delay to allow smooth scroll to complete
+          setTimeout(() => {
+            updateActiveLink(section);
+          }, 100);
+        }
+      });
+    });
+
+    // Scroll event with throttle for better performance
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        // Immediate update for responsive feel
+        setActiveLink();
+
+        // Debounced update as backup
+        scrollTimeout = setTimeout(() => {
+          setActiveLink();
+        }, 50);
+      },
+      { passive: true },
+    );
+
+    // Also update on resize in case section positions change
+    window.addEventListener(
+      "resize",
+      () => {
+        setActiveLink();
+      },
+      { passive: true },
+    );
+
+    // Set initial state
+    setActiveLink();
+  }
+
+  // Initialize scroll tracking after DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollTracking);
+  } else {
+    // DOMContentLoaded has already fired
+    initScrollTracking();
+  }
+
+  // Also try after full page load as backup
+  window.addEventListener("load", () => {
+    setTimeout(initScrollTracking, 100);
   });
 </script>
