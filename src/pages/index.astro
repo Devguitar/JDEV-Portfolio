@@ -16,7 +16,7 @@ import Footer from "../components/Footer.astro";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="John Dave - Junior Full Stack Developer Portfolio"
+      content="Ryan Fitzgerald - Full Stack Developer Portfolio"
     />
     <title>John Dave - Developer Portfolio</title>
   </head>
@@ -59,11 +59,82 @@ import Footer from "../components/Footer.astro";
     </div>
 
     <Navigation />
+
     <Hero />
-    <About />
-    <Project />
-    <Skills />
-    <Contact />
+    <!-- About Section with Grid Background -->
+    <section class="relative">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <About />
+      </div>
+    </section>
+
+    <!-- Work Section with Grid Background -->
+    <section class="relative">
+      <!-- Grid Background -->
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <Project />
+      </div>
+    </section>
+
+    <!-- Skills Section with Grid Background -->
+    <section class="relative">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <Skills />
+      </div>
+    </section>
+
+    <!-- Contact Section with Grid Background -->
+    <section class="relative">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="background-image: 
+              linear-gradient(#000 1px, transparent 1px), 
+              linear-gradient(90deg, #000 1px, transparent 1px); 
+             background-size: 410px 400px;
+             background-position: -72px 0;"
+        >
+        </div>
+      </div>
+      <div class="relative z-10">
+        <Contact />
+      </div>
+    </section>
+
     <Footer />
 
     <script>
@@ -102,7 +173,6 @@ import Footer from "../components/Footer.astro";
         if (loadingBar) loadingBar.style.width = "100%";
       });
 
-      // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
