@@ -20,8 +20,7 @@ const navLinks = [
           <li>
             <a 
               href={link.href}
-              class="nav-link text-sm font-bold tracking-wider text-black border-b-2 border-transparent hover:border-black pb-0.5 transition-colors"
-              data-section={link.href.substring(1)}
+              class="text-sm font-bold tracking-wider text-black border-b-2 border-transparent hover:border-black pb-0.5 transition-colors"
             >
               {link.label}
             </a>
@@ -59,8 +58,7 @@ const navLinks = [
           <li>
             <a 
               href={link.href}
-              class="mobile-nav-link block text-sm font-bold tracking-wider text-black hover:text-gray-600 transition-colors mobile-link"
-              data-section={link.href.substring(1)}
+              class="block text-sm font-bold tracking-wider text-black hover:text-gray-600 transition-colors mobile-link"
             >
               {link.label}
             </a>
@@ -109,139 +107,5 @@ const navLinks = [
       menuLines?.[1]?.classList.remove('opacity-0');
       menuLines?.[2]?.classList.remove('-rotate-45', '-translate-y-2');
     });
-  });
-
-  // Wait for DOM to be fully loaded before setting up scroll tracking
-  function initScrollTracking() {
-    // Get all sections - they should have id attributes
-    const sections = document.querySelectorAll('[id="about"], [id="project"], [id="skills"], [id="contact"]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const allNavLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-
-    // If no sections found, exit gracefully
-    if (sections.length === 0) {
-      console.warn('No sections with IDs found. Make sure your sections have id attributes.');
-      return;
-    }
-
-    function updateActiveLink(sectionId: string) {
-      // Update desktop links
-      navLinks.forEach(link => {
-        link.classList.remove('border-black');
-        link.classList.add('border-transparent');
-        
-        if (link.getAttribute('data-section') === sectionId) {
-          link.classList.remove('border-transparent');
-          link.classList.add('border-black');
-        }
-      });
-
-      // Update mobile links
-      mobileNavLinks.forEach(link => {
-        link.classList.remove('text-gray-600');
-        
-        if (link.getAttribute('data-section') === sectionId) {
-          link.classList.add('text-gray-600');
-        }
-      });
-    }
-
-    function setActiveLink() {
-      const viewportHeight = window.innerHeight;
-      const scrollPosition = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Check if we're at the bottom of the page
-      if (scrollPosition + viewportHeight >= documentHeight - 50) {
-        const lastSection = sections[sections.length - 1];
-        if (lastSection) {
-          updateActiveLink(lastSection.getAttribute('id') || '');
-          return;
-        }
-      }
-      
-      // Check if we're at the top of the page (Hero section - no nav link active)
-      if (scrollPosition < 100) {
-        // Clear all active states when in hero section
-        navLinks.forEach(link => {
-          link.classList.remove('border-black');
-          link.classList.add('border-transparent');
-        });
-        mobileNavLinks.forEach(link => {
-          link.classList.remove('text-gray-600');
-        });
-        return;
-      }
-      
-      let currentSection = '';
-      const offset = 150; // Fixed offset from top
-      
-      sections.forEach(section => {
-        const sectionElement = section as HTMLElement;
-        const sectionTop = sectionElement.offsetTop;
-        const sectionBottom = sectionTop + sectionElement.offsetHeight;
-        
-        // Check if the section is in the active viewport zone
-        if (scrollPosition + offset >= sectionTop && scrollPosition + offset < sectionBottom) {
-          currentSection = section.getAttribute('id') || '';
-        }
-      });
-
-      if (currentSection) {
-        updateActiveLink(currentSection);
-      }
-    }
-
-    // Handle click events on nav links
-    allNavLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const section = link.getAttribute('data-section');
-        if (section) {
-          // Small delay to allow smooth scroll to complete
-          setTimeout(() => {
-            updateActiveLink(section);
-          }, 100);
-        }
-      });
-    });
-
-    // Scroll event with throttle for better performance
-    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-    
-    window.addEventListener('scroll', () => {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      
-      // Immediate update for responsive feel
-      setActiveLink();
-      
-      // Debounced update as backup
-      scrollTimeout = setTimeout(() => {
-        setActiveLink();
-      }, 50);
-    }, { passive: true });
-
-    // Also update on resize in case section positions change
-    window.addEventListener('resize', () => {
-      setActiveLink();
-    }, { passive: true });
-
-    // Set initial state
-    setActiveLink();
-  }
-
-  // Initialize scroll tracking after DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScrollTracking);
-  } else {
-    // DOMContentLoaded has already fired
-    initScrollTracking();
-  }
-
-  // Also try after full page load as backup
-  window.addEventListener('load', () => {
-    setTimeout(initScrollTracking, 100);
   });
 </script>
