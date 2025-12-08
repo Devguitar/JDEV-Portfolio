@@ -1,7 +1,7 @@
-<!-- Scroll to Top Button -->
+<!-- Scroll to Top Button (moved above chat button) -->
 <button
   id="scrollToTop"
-  class="fixed bottom-8 right-8 p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all opacity-0 pointer-events-none z-50"
+  class="fixed bottom-28 right-8 p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all opacity-0 pointer-events-none z-50"
   aria-label="Scroll to top"
 >
   <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,14 +35,35 @@
 <script>
   const btn = document.getElementById("scrollToTop");
 
-  window.addEventListener("scroll", () => {
+  // Handle scroll visibility
+  function updateScrollButtonVisibility() {
     const show = window.scrollY > 300;
-    btn?.classList.toggle("opacity-0", !show);
-    btn?.classList.toggle("pointer-events-none", !show);
-    btn?.classList.toggle("opacity-100", show);
-  });
+    const chatBox = document.getElementById("chat-box");
+    const isChatOpen = chatBox && !chatBox.classList.contains("hidden");
+    
+    // Hide button if chat is open OR if not scrolled enough
+    if (isChatOpen || !show) {
+      btn?.classList.add("opacity-0", "pointer-events-none");
+      btn?.classList.remove("opacity-100");
+    } else {
+      btn?.classList.remove("opacity-0", "pointer-events-none");
+      btn?.classList.add("opacity-100");
+    }
+  }
+
+  window.addEventListener("scroll", updateScrollButtonVisibility);
 
   btn?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+
+  // Listen for chat toggle events
+  const chatBtn = document.getElementById("chat-btn");
+  chatBtn?.addEventListener("click", () => {
+    // Small delay to let chat animation complete
+    setTimeout(updateScrollButtonVisibility, 100);
+  });
+
+  // Initial check
+  updateScrollButtonVisibility();
 </script>

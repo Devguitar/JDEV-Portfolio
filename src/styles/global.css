@@ -7,3 +7,39 @@
     scroll-behavior: smooth;
   }
 }
+
+@layer utilities {
+  /* Chatbot message slide-in animation */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  /* Chatbot custom scrollbar */
+  #messages-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #messages-container::-webkit-scrollbar-track {
+    background: #e5e5e5;
+  }
+
+  #messages-container::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 0;
+  }
+
+  #messages-container::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  }
+}
