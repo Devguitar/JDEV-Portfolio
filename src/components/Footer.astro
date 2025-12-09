@@ -1,10 +1,11 @@
-<!-- Scroll to Top Button (moved above chat button) -->
+<!-- Scroll to Top Button (responsive for all devices) -->
 <button
   id="scrollToTop"
-  class="fixed bottom-28 right-8 p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all opacity-0 pointer-events-none z-50"
+  class="fixed bottom-20 right-4 sm:bottom-28 sm:right-8 p-3 sm:p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all opacity-0 pointer-events-none z-50 shadow-lg active:scale-95"
   aria-label="Scroll to top"
+  style="padding-bottom: max(0.75rem, calc(0.75rem + env(safe-area-inset-bottom)));"
 >
-  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="square" stroke-width="3" d="M5 15l7-7 7 7"></path>
   </svg>
 </button>
@@ -51,7 +52,14 @@
     }
   }
 
-  window.addEventListener("scroll", updateScrollButtonVisibility);
+  // Throttle scroll events for better performance
+  let scrollTimeout: ReturnType<typeof setTimeout>;
+  window.addEventListener("scroll", () => {
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(updateScrollButtonVisibility, 50);
+  }, { passive: true });
 
   btn?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -62,6 +70,11 @@
   chatBtn?.addEventListener("click", () => {
     // Small delay to let chat animation complete
     setTimeout(updateScrollButtonVisibility, 100);
+  });
+
+  // Handle orientation changes on mobile
+  window.addEventListener("orientationchange", () => {
+    setTimeout(updateScrollButtonVisibility, 200);
   });
 
   // Initial check

@@ -3,31 +3,60 @@
 ---
 
 <!-- Chat Toggle Button (bottom-right corner) -->
-<button 
-  id="chat-btn" 
-  class="fixed bottom-8 right-8 p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all z-[45]"
+<button
+  id="chat-btn"
+  class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 sm:p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white active:scale-95 transition-all z-[45]"
   aria-label="Toggle chat"
 >
-  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="square" stroke-width="3" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"></path>
+  <svg
+    class="h-5 w-5 sm:h-6 sm:w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="square"
+      stroke-width="3"
+      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"
+    ></path>
   </svg>
 </button>
 
 <!-- Chat Box -->
-<div 
-  id="chat-box" 
-  class="fixed bottom-28 right-8 w-96 max-w-[calc(100vw-4rem)] max-h-[calc(100vh-12rem)] bg-white border-2 border-black flex-col z-[45] transition-all duration-300 origin-bottom-right hidden opacity-0 scale-95"
+<div
+  id="chat-box"
+  class="fixed bottom-0 left-0 right-0 sm:bottom-20 sm:left-auto sm:right-8 sm:w-96 w-full h-[90vh] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] bg-white border-t-2 sm:border-2 border-black flex-col z-[45] transition-all duration-300 sm:origin-bottom-right hidden opacity-0 sm:scale-95"
 >
   <!-- Header -->
-  <div class="bg-black text-white px-6 py-4 font-black tracking-wide border-b-2 border-black flex items-center gap-3 flex-shrink-0">
-    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-    <span class="text-sm">JDEV ASSISTANT</span>
+  <div
+    class="bg-black text-white px-4 sm:px-6 py-3 sm:py-4 font-black tracking-wide border-b-2 border-black flex items-center justify-between flex-shrink-0"
+  >
+    <div class="flex items-center gap-3">
+      <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+      <span class="text-xs sm:text-sm">JDEV ASSISTANT</span>
+    </div>
+    <!-- Close button for mobile -->
+    <button
+      id="chat-close-mobile"
+      class="sm:hidden p-1 hover:bg-white hover:bg-opacity-20 active:scale-95 transition-all"
+      aria-label="Close chat"
+    >
+      <svg
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="square" stroke-width="3" d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
   </div>
 
   <!-- Messages Container -->
-  <div 
-    id="messages-container" 
-    class="flex-1 overflow-y-auto p-6 flex flex-col gap-4 bg-white relative min-h-0 flex-grow"
+  <div
+    id="messages-container"
+    class="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 bg-white relative min-h-0 flex-grow"
   >
     <!-- Grid Background -->
     <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -45,27 +74,30 @@
   </div>
 
   <!-- Suggestions -->
-  <div id="suggestions" class="flex gap-2 p-4 bg-white border-t-2 border-black overflow-x-auto flex-shrink-0">
-    <button 
-      class="px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
+  <div
+    id="suggestions"
+    class="flex gap-2 p-3 sm:p-4 bg-white border-t-2 border-black overflow-x-auto flex-shrink-0 scrollbar-hide"
+  >
+    <button
+      class="px-3 sm:px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white active:bg-black active:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
       data-msg="Are you open to work?"
     >
       OPEN TO WORK?
     </button>
-    <button 
-      class="px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
+    <button
+      class="px-3 sm:px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white active:bg-black active:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
       data-msg="What are your skills?"
     >
       SKILLS
     </button>
-    <button 
-      class="px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
+    <button
+      class="px-3 sm:px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white active:bg-black active:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
       data-msg="Show me your projects"
     >
       PROJECTS
     </button>
-    <button 
-      class="px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
+    <button
+      class="px-3 sm:px-4 py-2 bg-white border-2 border-black text-xs font-black tracking-wide hover:bg-black hover:text-white active:bg-black active:text-white transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
       data-msg="How can I contact you?"
     >
       CONTACT
@@ -73,16 +105,18 @@
   </div>
 
   <!-- Input Container -->
-  <div class="p-4 bg-white border-t-2 border-black flex gap-3 flex-shrink-0">
-    <input 
-      id="chat-input" 
-      class="flex-1 px-4 py-3 border-2 border-black bg-white text-black text-sm outline-none focus:ring-2 focus:ring-black transition-all"
-      placeholder="Type your message..." 
+  <div
+    class="p-3 sm:p-4 bg-white border-t-2 border-black flex gap-2 sm:gap-3 flex-shrink-0 safe-bottom"
+  >
+    <input
+      id="chat-input"
+      class="flex-1 px-3 sm:px-4 py-2 sm:py-3 border-2 border-black bg-white text-black text-sm outline-none focus:ring-2 focus:ring-black transition-all"
+      placeholder="Type your message..."
       autocomplete="off"
     />
-    <button 
-      id="send-btn" 
-      class="px-6 py-3 bg-black border-2 border-black text-white font-black text-sm tracking-wider hover:bg-white hover:text-black transition-all cursor-pointer flex-shrink-0"
+    <button
+      id="send-btn"
+      class="px-4 sm:px-6 py-2 sm:py-3 bg-black border-2 border-black text-white font-black text-xs sm:text-sm tracking-wider hover:bg-white hover:text-black active:bg-white active:text-black transition-all cursor-pointer flex-shrink-0"
     >
       SEND
     </button>
@@ -92,16 +126,26 @@
 <script>
   // State management
   let messages = [
-    { from: "bot", text: "Hey! 👋 I'm your navigation assistant. I can guide you to different sections or answer quick questions. What would you like to know?" }
+    {
+      from: "bot",
+      text: "Hey! 👋 I'm your navigation assistant. I can guide you to different sections or answer quick questions. What would you like to know?",
+    },
   ];
 
   // DOM elements
   const chatBox = document.getElementById("chat-box") as HTMLElement;
   const chatBtn = document.getElementById("chat-btn") as HTMLButtonElement;
+  const chatCloseMobile = document.getElementById(
+    "chat-close-mobile",
+  ) as HTMLButtonElement;
   const input = document.getElementById("chat-input") as HTMLInputElement;
   const sendBtn = document.getElementById("send-btn") as HTMLButtonElement;
-  const messagesContainer = document.getElementById("messages-container") as HTMLElement;
-  const suggestionsContainer = document.getElementById("suggestions") as HTMLElement;
+  const messagesContainer = document.getElementById(
+    "messages-container",
+  ) as HTMLElement;
+  const suggestionsContainer = document.getElementById(
+    "suggestions",
+  ) as HTMLElement;
 
   // Enhanced bot responses with more variety
   function getBotReply(msg: string): string {
@@ -112,58 +156,114 @@
       const greetings = [
         "Hey there! 👋 What would you like to know?",
         "Hi! I'm here to help. What can I tell you about JDEV?",
-        "Hello! Feel free to ask me anything! 😊"
+        "Hello! Feel free to ask me anything! 😊",
       ];
       return greetings[Math.floor(Math.random() * greetings.length)];
     }
 
     // Open to work - EXACT MATCH for button
-    if (lowerMsg === "are you open to work?" || lowerMsg.includes("open to work") || lowerMsg.includes("available for work") || lowerMsg.includes("taking projects") || lowerMsg.includes("accepting work")) {
+    if (
+      lowerMsg === "are you open to work?" ||
+      lowerMsg.includes("open to work") ||
+      lowerMsg.includes("available for work") ||
+      lowerMsg.includes("taking projects") ||
+      lowerMsg.includes("accepting work")
+    ) {
       return "Yes! JDEV is open to part-time opportunities and project-based work! 🚀 Perfect for freelance projects, contract work, or ongoing part-time collaborations. Use the Contact form to discuss your project requirements.";
     }
 
     // Skills - EXACT MATCH for button
-    if (lowerMsg === "what are your skills?" || lowerMsg.includes("skill") || lowerMsg.includes("technology") || lowerMsg.includes("tech stack") || lowerMsg.includes("what can you do")) {
+    if (
+      lowerMsg === "what are your skills?" ||
+      lowerMsg.includes("skill") ||
+      lowerMsg.includes("technology") ||
+      lowerMsg.includes("tech stack") ||
+      lowerMsg.includes("what can you do")
+    ) {
       return "JDEV has a diverse tech stack! 💻 The Skills section breaks down all the technologies and tools. Want to know about a specific one?";
     }
 
     // Projects - EXACT MATCH for button
-    if (lowerMsg === "show me your projects" || lowerMsg.includes("project") || lowerMsg.includes("work") || lowerMsg.includes("portfolio") || lowerMsg.includes("built") || lowerMsg.includes("created")) {
+    if (
+      lowerMsg === "show me your projects" ||
+      lowerMsg.includes("project") ||
+      lowerMsg.includes("work") ||
+      lowerMsg.includes("portfolio") ||
+      lowerMsg.includes("built") ||
+      lowerMsg.includes("created")
+    ) {
       return "The Projects section showcases real work with live demos and code! 🚀 Each project highlights different skills. Looking for something specific?";
     }
 
     // Contact - EXACT MATCH for button
-    if (lowerMsg === "how can i contact you?" || lowerMsg.includes("contact") || lowerMsg.includes("email") || lowerMsg.includes("reach") || lowerMsg.includes("message")) {
+    if (
+      lowerMsg === "how can i contact you?" ||
+      lowerMsg.includes("contact") ||
+      lowerMsg.includes("email") ||
+      lowerMsg.includes("reach") ||
+      lowerMsg.includes("message")
+    ) {
       return "Ready to connect? 📧 The Contact section has a form to get in touch directly. JDEV responds within 24 hours and is open to opportunities!";
     }
 
     // Hiring/Looking for developer
-    if (lowerMsg.includes("hire") || lowerMsg.includes("looking for") || lowerMsg.includes("need a developer") || lowerMsg.includes("need developer") || lowerMsg.includes("freelance") || lowerMsg.includes("full time") || lowerMsg.includes("full-time")) {
+    if (
+      lowerMsg.includes("hire") ||
+      lowerMsg.includes("looking for") ||
+      lowerMsg.includes("need a developer") ||
+      lowerMsg.includes("need developer") ||
+      lowerMsg.includes("freelance") ||
+      lowerMsg.includes("full time") ||
+      lowerMsg.includes("full-time")
+    ) {
       return "Thanks for your interest! 🎉 JDEV is currently available for part-time projects and freelance work. Let's discuss your needs and see if we're a good fit. Head to the Contact section to start the conversation!";
     }
 
     // Client inquiries
-    if (lowerMsg.includes("client") || lowerMsg.includes("i have a project") || lowerMsg.includes("we need") || lowerMsg.includes("looking to build")) {
+    if (
+      lowerMsg.includes("client") ||
+      lowerMsg.includes("i have a project") ||
+      lowerMsg.includes("we need") ||
+      lowerMsg.includes("looking to build")
+    ) {
       return "Great! 👔 JDEV is available for part-time project work and would love to hear about your needs. Whether it's a short-term project or ongoing part-time work, let's talk about your requirements. The Contact section is the best way to get started!";
     }
 
     // Collaboration
-    if (lowerMsg.includes("collaborate") || lowerMsg.includes("team up") || lowerMsg.includes("work together") || lowerMsg.includes("partnership")) {
+    if (
+      lowerMsg.includes("collaborate") ||
+      lowerMsg.includes("team up") ||
+      lowerMsg.includes("work together") ||
+      lowerMsg.includes("partnership")
+    ) {
       return "Always interested in collaboration! 🤝 JDEV is available for part-time collaborations and project partnerships. Whether you're a fellow developer, designer, or business owner, let's explore how we can work together. Reach out via the Contact section!";
     }
 
     // Experience
-    if (lowerMsg.includes("experience") || lowerMsg.includes("background") || lowerMsg.includes("about") || lowerMsg.includes("who is")) {
+    if (
+      lowerMsg.includes("experience") ||
+      lowerMsg.includes("background") ||
+      lowerMsg.includes("about") ||
+      lowerMsg.includes("who is")
+    ) {
       return "Want to know more about JDEV? 🌟 The About section has the full story, background, and journey. I'm here for quick questions and navigation help!";
     }
 
     // Name/Identity
-    if (lowerMsg.includes("name") || lowerMsg.includes("who are you") || lowerMsg.includes("what are you")) {
+    if (
+      lowerMsg.includes("name") ||
+      lowerMsg.includes("who are you") ||
+      lowerMsg.includes("what are you")
+    ) {
       return "I'm JDEV's AI assistant! 🤖 I'm here to help you navigate this portfolio and answer any questions about the work, skills, and projects featured here.";
     }
 
     // Thanks
-    if (lowerMsg.includes("thank") || lowerMsg.includes("thanks") || lowerMsg.includes("appreciate")) {
+    if (
+      lowerMsg.includes("thank") ||
+      lowerMsg.includes("thanks") ||
+      lowerMsg.includes("appreciate")
+    ) {
       return "Happy to help! 😊 Let me know if there's anything else you'd like to know!";
     }
 
@@ -173,17 +273,32 @@
     }
 
     // Location/Availability
-    if (lowerMsg.includes("where") || lowerMsg.includes("location") || lowerMsg.includes("based") || lowerMsg.includes("remote")) {
+    if (
+      lowerMsg.includes("where") ||
+      lowerMsg.includes("location") ||
+      lowerMsg.includes("based") ||
+      lowerMsg.includes("remote")
+    ) {
       return "JDEV is open to remote work and collaboration opportunities worldwide! 🌍 Check the Contact section or About section for more details.";
     }
 
     // Rates/Pricing
-    if (lowerMsg.includes("rate") || lowerMsg.includes("price") || lowerMsg.includes("cost") || lowerMsg.includes("budget")) {
+    if (
+      lowerMsg.includes("rate") ||
+      lowerMsg.includes("price") ||
+      lowerMsg.includes("cost") ||
+      lowerMsg.includes("budget")
+    ) {
       return "Great question! 💰 For part-time project rates and pricing discussions, please use the Contact form. JDEV will discuss budget, scope, and hourly/project rates directly with you.";
     }
 
     // Timeline/Availability
-    if (lowerMsg.includes("when") || lowerMsg.includes("timeline") || lowerMsg.includes("how long") || lowerMsg.includes("start")) {
+    if (
+      lowerMsg.includes("when") ||
+      lowerMsg.includes("timeline") ||
+      lowerMsg.includes("how long") ||
+      lowerMsg.includes("start")
+    ) {
       return "Interested in working together? ⏰ JDEV has availability for part-time projects starting soon. Project timelines and commitment hours can be discussed via the Contact form. Reach out to start the conversation!";
     }
 
@@ -194,27 +309,27 @@
   // Render all messages
   function renderMessages() {
     if (!messagesContainer) return;
-    
+
     messagesContainer.innerHTML = messages
-      .map(m => {
+      .map((m) => {
         if (m.from === "bot") {
           return `
-            <div class="flex items-start gap-3 animate-slideIn relative z-10">
-              <div class="flex-shrink-0 w-10 h-10 bg-black border-2 border-black flex items-center justify-center text-white text-xs font-black">
+            <div class="flex items-start gap-2 sm:gap-3 animate-slideIn relative z-10">
+              <div class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-black border-2 border-black flex items-center justify-center text-white text-xs font-black">
                 AI
               </div>
-              <div class="max-w-[75%] px-4 py-3 bg-white border-2 border-black text-sm leading-relaxed">
+              <div class="max-w-[75%] px-3 sm:px-4 py-2 sm:py-3 bg-white border-2 border-black text-xs sm:text-sm leading-relaxed">
                 ${m.text}
               </div>
             </div>
           `;
         } else {
           return `
-            <div class="flex items-start gap-3 flex-row-reverse animate-slideIn relative z-10">
-              <div class="flex-shrink-0 w-10 h-10 bg-black border-2 border-black flex items-center justify-center text-white text-xs font-black">
+            <div class="flex items-start gap-2 sm:gap-3 flex-row-reverse animate-slideIn relative z-10">
+              <div class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-black border-2 border-black flex items-center justify-center text-white text-xs font-black">
                 YOU
               </div>
-              <div class="max-w-[75%] px-4 py-3 bg-black text-white border-2 border-black text-sm leading-relaxed">
+              <div class="max-w-[75%] px-3 sm:px-4 py-2 sm:py-3 bg-black text-white border-2 border-black text-xs sm:text-sm leading-relaxed">
                 ${m.text}
               </div>
             </div>
@@ -222,7 +337,7 @@
         }
       })
       .join("");
-    
+
     // Scroll to bottom
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
@@ -230,15 +345,16 @@
   // Show typing indicator
   function showTyping() {
     if (!messagesContainer) return;
-    
+
     const typingDiv = document.createElement("div");
-    typingDiv.className = "flex items-start gap-3 animate-slideIn relative z-10";
+    typingDiv.className =
+      "flex items-start gap-2 sm:gap-3 animate-slideIn relative z-10";
     typingDiv.id = "typing-indicator";
     typingDiv.innerHTML = `
-      <div class="flex-shrink-0 w-10 h-10 bg-black border-2 border-black flex items-center justify-center text-white text-xs font-black">
+      <div class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-black border-2 border-black flex items-center justify-center text-white text-xs font-black">
         AI
       </div>
-      <div class="px-4 py-3 bg-white border-2 border-black flex gap-1.5">
+      <div class="px-3 sm:px-4 py-2 sm:py-3 bg-white border-2 border-black flex gap-1.5">
         <span class="w-2 h-2 bg-black rounded-full animate-bounce" style="animation-delay: 0s;"></span>
         <span class="w-2 h-2 bg-black rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
         <span class="w-2 h-2 bg-black rounded-full animate-bounce" style="animation-delay: 0.4s;"></span>
@@ -262,7 +378,7 @@
     // Add user message
     messages.push({ from: "user", text: messageText });
     renderMessages();
-    
+
     // Clear input
     if (!text && input) input.value = "";
 
@@ -270,37 +386,57 @@
     showTyping();
 
     // Simulate delay for more natural feel
-    setTimeout(() => {
-      hideTyping();
-      
-      // Add bot response
-      const botReply = getBotReply(messageText);
-      messages.push({ from: "bot", text: botReply });
-      renderMessages();
-    }, 600 + Math.random() * 400);
+    setTimeout(
+      () => {
+        hideTyping();
+
+        // Add bot response
+        const botReply = getBotReply(messageText);
+        messages.push({ from: "bot", text: botReply });
+        renderMessages();
+      },
+      600 + Math.random() * 400,
+    );
   }
 
   // Toggle chat
   function toggleChat() {
     if (!chatBox || !chatBtn) return;
-    
+
     const isHidden = chatBox.classList.contains("hidden");
     const scrollBtn = document.getElementById("scrollToTop");
-    
+    const isMobile = window.innerWidth < 640;
+
     if (isHidden) {
       // Hide scroll button IMMEDIATELY before opening chat
       scrollBtn?.classList.add("opacity-0", "pointer-events-none");
       scrollBtn?.classList.remove("opacity-100");
-      
-      chatBox.classList.remove("hidden", "opacity-0", "scale-95");
-      chatBox.classList.add("flex", "opacity-100", "scale-100");
-      chatBtn.innerHTML = `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+
+      // Prevent body scroll on mobile
+      if (isMobile) {
+        document.body.classList.add("chat-open-mobile");
+      }
+
+      chatBox.classList.remove("hidden", "opacity-0");
+      if (!isMobile) {
+        chatBox.classList.remove("scale-95");
+        chatBox.classList.add("scale-100");
+      }
+      chatBox.classList.add("flex", "opacity-100");
+      chatBtn.innerHTML = `<svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>`;
       setTimeout(() => input?.focus(), 300);
     } else {
-      chatBox.classList.add("hidden", "opacity-0", "scale-95");
-      chatBox.classList.remove("flex", "opacity-100", "scale-100");
-      chatBtn.innerHTML = `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-width="3" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"></path></svg>`;
-      
+      // Allow body scroll on mobile
+      document.body.classList.remove("chat-open-mobile");
+
+      chatBox.classList.add("hidden", "opacity-0");
+      if (!isMobile) {
+        chatBox.classList.add("scale-95");
+        chatBox.classList.remove("scale-100");
+      }
+      chatBox.classList.remove("flex", "opacity-100");
+      chatBtn.innerHTML = `<svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-width="3" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"></path></svg>`;
+
       // Show scroll button when chat closes (if scrolled down)
       if (window.scrollY > 300) {
         scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
@@ -311,9 +447,13 @@
 
   // Event listeners
   chatBtn?.addEventListener("click", toggleChat);
+  chatCloseMobile?.addEventListener("click", toggleChat);
   sendBtn?.addEventListener("click", () => sendMessage());
   input?.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") sendMessage();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
   });
 
   // Suggestion chips
