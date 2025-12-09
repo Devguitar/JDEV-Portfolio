@@ -1,19 +1,15 @@
----
-// No server-side logic needed for this component
----
-
-<!-- Scroll to Top Button (responsive positioning) -->
+<!-- Scroll to Top Button (moved above chat button) -->
 <button
   id="scrollToTop"
-  class="fixed bottom-20 right-4 sm:bottom-28 sm:right-8 p-3 sm:p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white active:scale-95 transition-all opacity-0 pointer-events-none z-50"
+  class="fixed bottom-28 right-8 p-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all opacity-0 pointer-events-none z-50"
   aria-label="Scroll to top"
 >
-  <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="square" stroke-width="3" d="M5 15l7-7 7 7"></path>
   </svg>
 </button>
 
-<footer class="relative bg-white text-black py-6 sm:py-8 overflow-hidden">
+<footer class="relative bg-white text-black py-8 overflow-hidden">
   <div class="absolute inset-0 opacity-[0.08] pointer-events-none">
     <div
       class="w-full h-full"
@@ -31,8 +27,8 @@
     style="background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(245,245,245,0.6) 50%, rgba(235,235,235,0.3) 100%);"
   >
   </div>
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 text-center relative z-10">
-    <p class="text-lg sm:text-xl font-black">&copy; 2025 JOHN DAVE</p>
+  <div class="max-w-screen-xl mx-auto px-6 text-center relative z-10">
+    <p class="text-xl font-black">&copy; 2025 JOHN DAVE</p>
   </div>
 </footer>
 
