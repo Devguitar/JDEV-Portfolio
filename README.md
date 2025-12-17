@@ -1,48 +1,58 @@
-# Astro Starter Kit: Basics
-## Demo
-https://jdev-portfolio-astro.vercel.app/
+# JDEV-Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+A **personal portfolio website** to showcase my professional projects, skills, and credentials.  
+Built with **Astro, TypeScript, and TailwindCSS**, this site demonstrates responsive design, modern web development practices, and a clean, professional layout.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 🌟 Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Project Showcase** – Highlighting personal and professional projects with descriptions and links.  
+- **Skills Overview** – Clear presentation of technical skills and tools.  
+- **Resume / Credentials** – Access to professional experience, achievements, and certifications.  
+- **Responsive Design** – Works smoothly on mobile, tablet, and desktop devices.  
+- **Contact Section** – Quick access to email and social media links.  
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+---
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🧰 Tech Stack
 
-## 🧞 Commands
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | Astro, TypeScript, TailwindCSS |
+| **Animations / UI** | Framer Motion, Tailwind transitions |
+| **Deployment** | Vercel |
+| **Version Control** | Git + GitHub |
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📸 Screenshots
 
-## 👀 Want to learn more?
+<img width="1897" height="945" alt="Screenshot 2025-12-17 144608" src="https://github.com/user-attachments/assets/c408cae6-4dec-41b0-9bb7-18d69b750358" />
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+<img width="1897" height="947" alt="Screenshot 2025-12-17 144533" src="https://github.com/user-attachments/assets/f9927d8a-7b0b-4c05-9727-851da82e9223" />
+
+---
+
+## 🚀 Live Demo
+
+Check out the live site here: [JDEV-Portfolio](https://jdev-portfolio-astro.vercel.app/)
+
+---
+
+## ⚙️ Local Setup (Optional)
+
+If you want to run the portfolio locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/Devguitar/JDEV-Portfolio.git
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Open the site in your browser
+# Typically at http://localhost:3000
