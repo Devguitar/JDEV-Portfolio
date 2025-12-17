@@ -28,8 +28,6 @@ Built with **Astro, TypeScript, and TailwindCSS**, this site demonstrates respon
 
 ## 📸 Screenshots
 
-<img width="1897" height="945" alt="Screenshot 2025-12-17 144608" src="https://github.com/user-attachments/assets/c408cae6-4dec-41b0-9bb7-18d69b750358" />
-
 <img width="1897" height="947" alt="Screenshot 2025-12-17 144533" src="https://github.com/user-attachments/assets/f9927d8a-7b0b-4c05-9727-851da82e9223" />
 
 ---
